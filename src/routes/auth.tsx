@@ -7,9 +7,8 @@ import { AppNav } from "@/components/app/AppNav";
 import { useUser } from "@/hooks/use-session";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({
-    mode: s.mode === "signup" ? ("signup" as const) : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): { mode?: "signup" } =>
+    s.mode === "signup" ? { mode: "signup" } : {},
   head: () => ({
     meta: [
       { title: "Sign in — LaunchPact" },
