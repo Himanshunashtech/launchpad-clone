@@ -14,7 +14,74 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      backings: {
+        Row: {
+          backer_id: string
+          created_at: string
+          id: string
+          launch_id: string
+        }
+        Insert: {
+          backer_id?: string
+          created_at?: string
+          id?: string
+          launch_id: string
+        }
+        Update: {
+          backer_id?: string
+          created_at?: string
+          id?: string
+          launch_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "backings_launch_id_fkey"
+            columns: ["launch_id"]
+            isOneToOne: false
+            referencedRelation: "launches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      launches: {
+        Row: {
+          author_name: string
+          category: string
+          created_at: string
+          description: string
+          id: string
+          launch_date: string
+          name: string
+          tagline: string
+          user_id: string
+          website_url: string
+        }
+        Insert: {
+          author_name?: string
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          launch_date: string
+          name: string
+          tagline: string
+          user_id?: string
+          website_url?: string
+        }
+        Update: {
+          author_name?: string
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          launch_date?: string
+          name?: string
+          tagline?: string
+          user_id?: string
+          website_url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
